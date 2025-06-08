@@ -1,5 +1,5 @@
 const giftIcon = document.getElementById("giftIcon");
-const memoryBoard = document.getElementById("memoryBoard");
+const memoryBoard = document.getElementById("containerMemoryBoard");
 const timer = document.getElementById("timer");
 
 giftIcon.addEventListener("click", () => {

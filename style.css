@@ -20,9 +20,20 @@ body {
   transform: translate(-50%, -50%) scale(1.1);
 }
 
-.memory-board {
+/* Quadro de Memórias - Memory board*/
+#containerMemoryBoard {
   display: none;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-memory-board {
+  font-size: 2rem;
+}
+
+.memory-board {
+  display: grid;
+  grid-template-columns: auto auto;
   gap: 16px;
   justify-content: center;
   padding: 40px 20px;
@@ -90,7 +101,7 @@ body {
 }
 
 /* Responsividade */
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
   .memory-board img {
     width: 120px;
     height: 120px;
@@ -104,7 +115,7 @@ body {
     width: 60px;
     height: 60px;
   }
-}
+} */
 
 /* Timer */
 
@@ -112,5 +123,6 @@ body {
   display: none;
   justify-content: center;
   align-items: center;
+  text-align: center;
   padding: 0.5rem;
 }
