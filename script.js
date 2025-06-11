@@ -2,12 +2,23 @@ document.addEventListener("DOMContentLoaded", () => {
   heart.render("#Heart");
 });
 
+// O número no final representa o ano da carta
+const btnCartaDiaDosNamorados25 = document.getElementById(
+  "carta-dia-dos-namorados-12-06-2025"
+);
+const btnFecharcartaDiaDosNamorados25 = document.getElementById(
+  "btnFecharcartaDiaDosNamorados25"
+);
+const cartaDiaDosNamorados25 = document.getElementById(
+  "cartaDiaDosNamorados25"
+);
+
 const giftIcon = document.getElementById("giftIcon");
 const content = document.getElementById("conteudo");
 
 giftIcon.addEventListener("click", () => {
   giftIcon.style.display = "none";
-  content.style.display = "block";
+  content.style.display = "flex";
   launchHearts();
 });
 
@@ -257,66 +268,106 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // O código a baixo, se retrata da sessão de Cartas
-const cartasMap = new Map();
-cartasMap.set(
-  "carta-dia-dos-namorados-12-06-2025",
-  "./assets/Cartas/Carta-DiaDosNamorados-12-06-2025.svg"
-);
+// const cartasMap = new Map();
+// cartasMap.set(
+//   "carta-dia-dos-namorados-12-06-2025",
+//   "./assets/Cartas/Carta-DiaDosNamorados-12-06-2025.svg"
+// );
 
-const cartaOverlay = document.createElement("div");
-cartaOverlay.setAttribute("id", "carta-overlay");
-cartaOverlay.style.display = "none";
-document.body.appendChild(cartaOverlay);
+// const cartaOverlay = document.createElement("div");
+// cartaOverlay.setAttribute("id", "carta-overlay");
+// cartaOverlay.style.display = "none";
+// document.body.appendChild(cartaOverlay);
 
-async function carregarSvg(caminho) {
-  try {
-    const resposta = await fetch(caminho);
-    if (!resposta.ok)
-      throw new Error("Erro ao carregar o SVG: ${resposta.status}");
-    const svgBlob = await resposta.blob();
-    return URL.createObjectURL(svgBlob);
-  } catch (erro) {
-    console.error(erro);
-    return null;
+// async function carregarSvg(caminho) {
+//   try {
+//     const resposta = await fetch(caminho);
+//     if (!resposta.ok)
+//       throw new Error("Erro ao carregar o SVG: ${resposta.status}");
+//     const svgBlob = await resposta.blob();
+//     return URL.createObjectURL(svgBlob);
+//   } catch (erro) {
+//     console.error(erro);
+//     return null;
+//   }
+// }
+
+// const botoes = document.querySelectorAll(".li-btn-cartas");
+// botoes.forEach((botao) => {
+//   botao.addEventListener("click", async () => {
+//     const cartaId = botao.id;
+//     const caminhoSvg = cartasMap.get(cartaId);
+
+//     if (caminhoSvg) {
+//       const svgUrl = await carregarSvg(caminhoSvg);
+//       if (svgUrl) {
+//         cartaOverlay.innerHTML = `
+//             <div class="carta-content">
+//               <img src="${svgUrl}" alt="Carta" class="carta-img">
+//             </div>
+//             <button class="fechar-carta">Fechar</button>
+//           `;
+//         cartaOverlay.style.display = "flex";
+
+//         const botaoFechar = cartaOverlay.querySelector(".fechar-carta");
+//         botaoFechar.addEventListener("click", () => {
+//           cartaOverlay.style.display = "none";
+//           cartaOverlay.innerHTML = "";
+//           URL.revokeObjectURL(svgUrl);
+//         });
+
+//         cartaOverlay.addEventListener("click", (e) => {
+//           if (e.target === cartaOverlay) {
+//             cartaOverlay.style.display = "none";
+//             cartaOverlay.innerHTML = "";
+//             URL.revokeObjectURL(svgUrl);
+//           }
+//         });
+//       } else {
+//         console.error(`Falha ao carregar o SVG para o ID: ${cartaId}`);
+//       }
+//     } else {
+//       console.error(`Nenhuma carta encontrada para o ID: ${cartaId}`);
+//     }
+//   });
+// });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const btnCartaDiaDosNamorados25 = document.getElementById(
+    "carta-dia-dos-namorados-12-06-2025"
+  );
+  const btnFecharcartaDiaDosNamorados25 = document.getElementById(
+    "btnFecharcartaDiaDosNamorados25"
+  );
+  const cartaDiaDosNamorados25 = document.getElementById(
+    "cartaDiaDosNamorados25"
+  );
+
+  if (
+    !btnCartaDiaDosNamorados25 ||
+    !btnFecharcartaDiaDosNamorados25 ||
+    !cartaDiaDosNamorados25
+  ) {
+    console.error("One or more elements not found. Check IDs in HTML.");
+    return;
   }
-}
 
-const botoes = document.querySelectorAll(".li-btn-cartas");
-botoes.forEach((botao) => {
-  botao.addEventListener("click", async () => {
-    const cartaId = botao.id;
-    const caminhoSvg = cartasMap.get(cartaId);
+  btnFecharcartaDiaDosNamorados25.addEventListener("click", function () {
+    console.log("Botão fechar foi clicado!");
+    btnFecharcartaDiaDosNamorados25.classList.add("hide");
+    cartaDiaDosNamorados25.classList.add("hide");
 
-    if (caminhoSvg) {
-      const svgUrl = await carregarSvg(caminhoSvg);
-      if (svgUrl) {
-        cartaOverlay.innerHTML = `
-            <div class="carta-content">
-              <img src="${svgUrl}" alt="Carta" class="carta-img">
-            </div>
-            <button class="fechar-carta">Fechar</button>
-          `;
-        cartaOverlay.style.display = "flex";
+    setTimeout(() => {
+      btnFecharcartaDiaDosNamorados25.style.display = "none";
+      cartaDiaDosNamorados25.style.display = "none";
+      btnFecharcartaDiaDosNamorados25.classList.remove("hide");
+      cartaDiaDosNamorados25.classList.remove("hide");
+    }, 300); // Match animation duration (0.3s)
+  });
 
-        const botaoFechar = cartaOverlay.querySelector(".fechar-carta");
-        botaoFechar.addEventListener("click", () => {
-          cartaOverlay.style.display = "none";
-          cartaOverlay.innerHTML = "";
-          URL.revokeObjectURL(svgUrl);
-        });
-
-        cartaOverlay.addEventListener("click", (e) => {
-          if (e.target === cartaOverlay) {
-            cartaOverlay.style.display = "none";
-            cartaOverlay.innerHTML = "";
-            URL.revokeObjectURL(svgUrl);
-          }
-        });
-      } else {
-        console.error(`Falha ao carregar o SVG para o ID: ${cartaId}`);
-      }
-    } else {
-      console.error(`Nenhuma carta encontrada para o ID: ${cartaId}`);
-    }
+  btnCartaDiaDosNamorados25.addEventListener("click", function () {
+    console.log("Botão carta foi clicado!");
+    btnFecharcartaDiaDosNamorados25.style.display = "flex";
+    cartaDiaDosNamorados25.style.display = "flex";
   });
 });
