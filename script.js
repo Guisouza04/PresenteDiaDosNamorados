@@ -255,3 +255,68 @@ const floatingHearts = {
 document.addEventListener("DOMContentLoaded", () => {
   floatingHearts.render(".HeartDinamico");
 });
+
+// O código a baixo, se retrata da sessão de Cartas
+const cartasMap = new Map();
+cartasMap.set(
+  "carta-dia-dos-namorados-12-06-2025",
+  "./assets/Cartas/Carta-DiaDosNamorados-12-06-2025.svg"
+);
+
+const cartaOverlay = document.createElement("div");
+cartaOverlay.setAttribute("id", "carta-overlay");
+cartaOverlay.style.display = "none";
+document.body.appendChild(cartaOverlay);
+
+async function carregarSvg(caminho) {
+  try {
+    const resposta = await fetch(caminho);
+    if (!resposta.ok)
+      throw new Error("Erro ao carregar o SVG: ${resposta.status}");
+    const svgBlob = await resposta.blob();
+    return URL.createObjectURL(svgBlob);
+  } catch (erro) {
+    console.error(erro);
+    return null;
+  }
+}
+
+const botoes = document.querySelectorAll(".li-btn-cartas");
+botoes.forEach((botao) => {
+  botao.addEventListener("click", async () => {
+    const cartaId = botao.id;
+    const caminhoSvg = cartasMap.get(cartaId);
+
+    if (caminhoSvg) {
+      const svgUrl = await carregarSvg(caminhoSvg);
+      if (svgUrl) {
+        cartaOverlay.innerHTML = `
+            <div class="carta-content">
+              <img src="${svgUrl}" alt="Carta" class="carta-img">
+            </div>
+            <button class="fechar-carta">Fechar</button>
+          `;
+        cartaOverlay.style.display = "flex";
+
+        const botaoFechar = cartaOverlay.querySelector(".fechar-carta");
+        botaoFechar.addEventListener("click", () => {
+          cartaOverlay.style.display = "none";
+          cartaOverlay.innerHTML = "";
+          URL.revokeObjectURL(svgUrl);
+        });
+
+        cartaOverlay.addEventListener("click", (e) => {
+          if (e.target === cartaOverlay) {
+            cartaOverlay.style.display = "none";
+            cartaOverlay.innerHTML = "";
+            URL.revokeObjectURL(svgUrl);
+          }
+        });
+      } else {
+        console.error(`Falha ao carregar o SVG para o ID: ${cartaId}`);
+      }
+    } else {
+      console.error(`Nenhuma carta encontrada para o ID: ${cartaId}`);
+    }
+  });
+});

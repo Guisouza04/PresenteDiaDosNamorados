@@ -17,6 +17,16 @@ body {
   align-items: center;
 }
 
+.container {
+  padding: 2rem;
+}
+
+.title-h2 {
+  font-family: "Kapakana", cursive;
+  font-size: 4.5rem;
+  justify-self: center;
+}
+
 .gift-icon {
   width: 80px;
   height: 80px;
@@ -67,9 +77,6 @@ body {
 }
 
 .title-memory-board {
-  font-family: "Kapakana", cursive;
-  font-size: 4.5rem;
-  justify-self: center;
   margin-top: 2rem;
 }
 
@@ -157,3 +164,37 @@ body {
     height: 60px;
   }
 } */
+
+/* Sessão de Cartas */
+.carta-img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+}
+
+.Icons-cartas {
+  position: relative;
+  transform: translateY(-2px);
+  width: 1.5rem;
+}
+
+.li-cartas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 1rem 0.5rem;
+  border: solid 2px #c6b8bd;
+}
+
+.li-btn-cartas {
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
