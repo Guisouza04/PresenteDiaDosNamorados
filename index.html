@@ -8,16 +8,38 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kapakana:wght@300..400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kapakana:wght@300..400&family=Great+Vibes&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
-  <img src="./assets/presente.png" alt="Icone de presente" class="gift-icon" id="giftIcon">
+  <img src="./assets/Icons/presente.png" alt="Icone de presente" class="gift-icon" id="giftIcon">
 
   <div id="conteudo">
-    <h1 id="title-h1">Yasmin e Guilherme</h1>
-    <div class="Heart"></div>
-    <div id="timer"></div>
+    <header>
+      <h1 id="title-h1">Yasmin e Guilherme</h1>
+    </header>
+    <div class="container">
+      <h2 id="h2">Amor, esse site foi criado para que possamos guardar nossos momentos para todo sempre, um histórico do
+        nosso
+        amor que poderá ser acessado via internet, para que todos saibam o quanto você é especial para mim!</h2>
+    </div>
+    <!-- Tempo Juntos -->
+    <div class="container">
+      <h2 class="title-h2">Tempo Juntos</h2>
+      <div id="timer"></div>
+      <div class="HeartDinamico"></div>
+      <img class="flechaDoAmor" id="flecaDoAmor-sessaoTimer" src="./assets/Icons/flecaDoAmor.svg" alt="flecaDoAmor">
+    </div>
+
+    <div class="container">
+      <h2 class="title-h2">Entrega das Alianças</h2>
+      <video width="300" height="auto" controls autoplay loop muted poster="caminho/imagem.jpg">
+        <source src="./assets/Videos/Alianca.mp4" type="video/mp4">
+        Desculpe, seu navegador não suporta vídeos.
+      </video>
+      <img class="flechaDoAmor" src="./assets/Icons/flecaDoAmor.svg" alt="flecaDoAmor">
+    </div>
 
     <!-- Painel de memórias -->
     <div class="container" id="containerMemoryBoard">
@@ -27,8 +49,13 @@
         <img src="./assets/Foto02.jpg" alt="Foto 2">
         <img src="./assets/Foto03.jpg" alt="Foto 3">
         <img src="./assets/Foto04.jpg" alt="Foto 4">
+        <img src="./assets/Foto05.jpg" alt="Foto 5">
+        <img src="./assets/Foto06.jpg" alt="Foto 6">
+        <img src="./assets/Foto08.jpg" alt="Foto 7">
+        <img src="./assets/Foto07.jpg" alt="Foto 8">
         <!-- Adicione mais fotos aqui -->
       </div>
+      <img class="flechaDoAmor" id="flecaDoAmor-sessaoMemorys" src="./assets/Icons/flecaDoAmor.svg" alt="flecaDoAmor">
     </div>
 
     <!-- Sessão de Cartas -->
@@ -51,8 +78,29 @@
           </button>
         </li>
       </ul>
+      <img class="flechaDoAmor" src="./assets/Icons/flecaDoAmor.svg" alt="flecaDoAmor">
+    </div>
+
+    <!-- Sessão Músicas -->
+    <div class="container">
+      <h2 class="title-h2">Músicas</h2>
+      <div class="carrosselMusicas">
+        <iframe style="border-radius:12px"
+          src="https://open.spotify.com/embed/track/1dGxOpMQknNgkD5d9BCObF?utm_source=generator" frameBorder="0"
+          allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"></iframe>
+        <iframe style="border-radius:12px"
+          src="https://open.spotify.com/embed/track/56eUThEKkPO5MVKUTpv6cG?utm_source=generator" frameBorder="0"
+          allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"></iframe>
+        <iframe style="border-radius:12px"
+          src="https://open.spotify.com/embed/track/4JSROzfWqKccwZ68DX1aJe?utm_source=generator" frameBorder="0"
+          allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"></iframe>
+      </div>
     </div>
   </div>
+
 
   <script src="script.js"></script>
 </body>

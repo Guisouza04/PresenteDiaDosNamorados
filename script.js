@@ -1,7 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-  heart.render("#Heart");
-});
-
 // O número no final representa o ano da carta
 const btnCartaDiaDosNamorados25 = document.getElementById(
   "carta-dia-dos-namorados-12-06-2025"
@@ -53,13 +49,81 @@ function calcularTempoDeNamoro(dataNamoro) {
     const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
     const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
 
-    const frase = `À ${anos} anos, ${meses} meses, ${dias} dias, ${horas
-      .toString()
-      .padStart(2, "0")} horas, ${minutos
-      .toString()
-      .padStart(2, "0")} minutos e ${segundos
-      .toString()
-      .padStart(2, "0")} segundos que meu coração bate por você!`;
+    let frase;
+
+    if (anos >= 2 && meses >= 2 && dias >= 2) {
+      frase = `À ${anos} anos, ${meses} meses, ${dias} dias, ${horas
+        .toString()
+        .padStart(2, "0")} horas, ${minutos
+        .toString()
+        .padStart(2, "0")} minutos e ${segundos
+        .toString()
+        .padStart(2, "0")} segundos que meu coração bate por você!`;
+    } else if (anos == 1 && meses >= 2 && dias >= 2) {
+      frase = `À ${anos} ano, ${meses} meses, ${dias} dias, ${horas
+        .toString()
+        .padStart(2, "0")} horas, ${minutos
+        .toString()
+        .padStart(2, "0")} minutos e ${segundos
+        .toString()
+        .padStart(2, "0")} segundos que meu coração bate por você!`;
+    } else if (anos == 1 && meses == 1 && dias >= 2) {
+      frase = `À ${anos} ano, ${meses} mês, ${dias} dias, ${horas
+        .toString()
+        .padStart(2, "0")} horas, ${minutos
+        .toString()
+        .padStart(2, "0")} minutos e ${segundos
+        .toString()
+        .padStart(2, "0")} segundos que meu coração bate por você!`;
+    } else if (anos == 1 && meses == 1 && dias == 1) {
+      frase = `À ${anos} ano, ${meses} mês, ${dias} dia, ${horas
+        .toString()
+        .padStart(2, "0")} horas, ${minutos
+        .toString()
+        .padStart(2, "0")} minutos e ${segundos
+        .toString()
+        .padStart(2, "0")} segundos que meu coração bate por você!`;
+    } else if (anos < 1 && meses >= 2 && dias >= 2) {
+      frase = `À ${meses} meses, ${dias} dias, ${horas
+        .toString()
+        .padStart(2, "0")} horas, ${minutos
+        .toString()
+        .padStart(2, "0")} minutos e ${segundos
+        .toString()
+        .padStart(2, "0")} segundos que meu coração bate por você!`;
+    } else if (anos < 1 && meses == 1 && dias >= 2) {
+      frase = `À ${meses} mês, ${dias} dias, ${horas
+        .toString()
+        .padStart(2, "0")} horas, ${minutos
+        .toString()
+        .padStart(2, "0")} minutos e ${segundos
+        .toString()
+        .padStart(2, "0")} segundos que meu coração bate por você!`;
+    } else if (anos < 1 && meses == 1 && dias == 1) {
+      frase = `À ${meses} mês, ${dias} dia, ${horas
+        .toString()
+        .padStart(2, "0")} horas, ${minutos
+        .toString()
+        .padStart(2, "0")} minutos e ${segundos
+        .toString()
+        .padStart(2, "0")} segundos que meu coração bate por você!`;
+    } else if (anos < 1 && meses < 1 && dias >= 2) {
+      frase = `À ${dias} dias, ${horas
+        .toString()
+        .padStart(2, "0")} horas, ${minutos
+        .toString()
+        .padStart(2, "0")} minutos e ${segundos
+        .toString()
+        .padStart(2, "0")} segundos que meu coração bate por você!`;
+    } else {
+      frase = `À ${dias} dia, ${horas
+        .toString()
+        .padStart(2, "0")} horas, ${minutos
+        .toString()
+        .padStart(2, "0")} minutos e ${segundos
+        .toString()
+        .padStart(2, "0")} segundos que meu coração bate por você!`;
+    }
 
     document.getElementById("timer").innerText = frase;
   }, 1000);
@@ -68,63 +132,6 @@ function calcularTempoDeNamoro(dataNamoro) {
 const dataNamoro = new Date(2025, 3, 30);
 calcularTempoDeNamoro(dataNamoro);
 console.log(calcularTempoDeNamoro(dataNamoro));
-
-const heart = {
-  html: '<div class="Heart"></div>',
-  css: `
-    .Heart {
-  height: 6rem;
-  width: 6rem;
-  background-color: #f20044;
-  position: relative;
-  transform: rotate(-45deg);
-  box-shadow: -1rem 1rem 9rem #f20044;
-  animation: heart 1s linear infinite alternate;
-  margin-top: 5rem;
-  margin-bottom: 5rem;
-}
-@keyframes heart{
-  0% {
-    transform: rotate(-45deg) scale(1.07);
-  }
-  80% {
-    transform: rotate(-45deg) scale(1.0);
-  }
-  100% {
-    transform: rotate(-45deg) scale(0.8);
-  }
-}
-.Heart::before {
-  content: ' ';
-  position: absolute;
-  height: 6rem;
-  width: 6rem;
-  background-color: #f20044;
-  top: -50%;
-  border-radius: 5rem;
-  box-shadow: -1rem -1rem 9rem #f20044;
-}
-.Heart::after {
-  content: ' ';
-  position: absolute;
-  height: 6rem;
-  width: 6rem;
-  background-color: #f20044;
-  right: -50%;
-  border-radius: 5rem;
-  box-shadow: 1rem 1rem 9rem #f20044;
-}
-  `,
-  render: function (container) {
-    // Adicionar CSS ao cabeçalho
-    const style = document.createElement("style");
-    style.textContent = this.css;
-    document.head.appendChild(style);
-
-    // Adicionar HTML ao contêiner
-    document.querySelector(container).innerHTML = this.html;
-  },
-};
 
 const floatingHearts = {
   html: `<div class="Heart" onclick="floatingHearts.spawnHearts()"></div>`,
@@ -246,13 +253,12 @@ const floatingHearts = {
 
     const heartElement = document.querySelector(".Heart");
     const rect = heartElement.getBoundingClientRect();
-    const startY = rect.top + window.scrollY;
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 20; i++) {
       const heart = document.createElement("div");
       heart.classList.add("floating-heart");
-      const randomOffset = Math.random() * -200;
       heart.style.left = `${Math.random() * 100}vw`;
-      heart.style.top = `${startY + randomOffset}px`; // Começa no final da tela
+      heart.style.top = `${Math.random() * 100}vh`;
+      heart.style.zIndex = 999;
       container.appendChild(heart);
 
       // Remover o coração após a animação
@@ -267,71 +273,42 @@ document.addEventListener("DOMContentLoaded", () => {
   floatingHearts.render(".HeartDinamico");
 });
 
+// O Código a baixo é responsável pela sessão de Memórias (Section Memory-board)
+// JavaScript for smooth touch scrolling and drag behavior
+const memoryBoard = document.getElementById("memoryBoard");
+let isDragging = false;
+let startY = 0;
+let scrollTop = 0;
+
+memoryBoard.addEventListener("touchstart", (e) => {
+  isDragging = true;
+  startY = e.touches[0].clientY;
+  scrollTop = memoryBoard.scrollTop;
+});
+
+memoryBoard.addEventListener("touchmove", (e) => {
+  if (!isDragging) return;
+  const y = e.touches[0].clientY;
+  const deltaY = startY - y;
+  memoryBoard.scrollTop = scrollTop + deltaY;
+});
+
+memoryBoard.addEventListener("touchend", () => {
+  isDragging = false;
+});
+
+// Optional: Prevent default scrolling on the body to avoid conflicts
+document.body.addEventListener(
+  "touchmove",
+  (e) => {
+    if (memoryBoard.contains(e.target)) {
+      e.preventDefault();
+    }
+  },
+  { passive: false }
+);
+
 // O código a baixo, se retrata da sessão de Cartas
-// const cartasMap = new Map();
-// cartasMap.set(
-//   "carta-dia-dos-namorados-12-06-2025",
-//   "./assets/Cartas/Carta-DiaDosNamorados-12-06-2025.svg"
-// );
-
-// const cartaOverlay = document.createElement("div");
-// cartaOverlay.setAttribute("id", "carta-overlay");
-// cartaOverlay.style.display = "none";
-// document.body.appendChild(cartaOverlay);
-
-// async function carregarSvg(caminho) {
-//   try {
-//     const resposta = await fetch(caminho);
-//     if (!resposta.ok)
-//       throw new Error("Erro ao carregar o SVG: ${resposta.status}");
-//     const svgBlob = await resposta.blob();
-//     return URL.createObjectURL(svgBlob);
-//   } catch (erro) {
-//     console.error(erro);
-//     return null;
-//   }
-// }
-
-// const botoes = document.querySelectorAll(".li-btn-cartas");
-// botoes.forEach((botao) => {
-//   botao.addEventListener("click", async () => {
-//     const cartaId = botao.id;
-//     const caminhoSvg = cartasMap.get(cartaId);
-
-//     if (caminhoSvg) {
-//       const svgUrl = await carregarSvg(caminhoSvg);
-//       if (svgUrl) {
-//         cartaOverlay.innerHTML = `
-//             <div class="carta-content">
-//               <img src="${svgUrl}" alt="Carta" class="carta-img">
-//             </div>
-//             <button class="fechar-carta">Fechar</button>
-//           `;
-//         cartaOverlay.style.display = "flex";
-
-//         const botaoFechar = cartaOverlay.querySelector(".fechar-carta");
-//         botaoFechar.addEventListener("click", () => {
-//           cartaOverlay.style.display = "none";
-//           cartaOverlay.innerHTML = "";
-//           URL.revokeObjectURL(svgUrl);
-//         });
-
-//         cartaOverlay.addEventListener("click", (e) => {
-//           if (e.target === cartaOverlay) {
-//             cartaOverlay.style.display = "none";
-//             cartaOverlay.innerHTML = "";
-//             URL.revokeObjectURL(svgUrl);
-//           }
-//         });
-//       } else {
-//         console.error(`Falha ao carregar o SVG para o ID: ${cartaId}`);
-//       }
-//     } else {
-//       console.error(`Nenhuma carta encontrada para o ID: ${cartaId}`);
-//     }
-//   });
-// });
-
 document.addEventListener("DOMContentLoaded", function () {
   const btnCartaDiaDosNamorados25 = document.getElementById(
     "carta-dia-dos-namorados-12-06-2025"
@@ -370,4 +347,27 @@ document.addEventListener("DOMContentLoaded", function () {
     btnFecharcartaDiaDosNamorados25.style.display = "flex";
     cartaDiaDosNamorados25.style.display = "flex";
   });
+});
+
+// JavaScript para o carrossel de músicas
+const carrosselMusicas = document.querySelector(".carrosselMusicas");
+let isDraggingMusic = false;
+let startX = 0;
+let scrollLeft = 0;
+
+carrosselMusicas.addEventListener("touchstart", (e) => {
+  isDraggingMusic = true;
+  startX = e.touches[0].clientX;
+  scrollLeft = carrosselMusicas.scrollLeft;
+});
+
+carrosselMusicas.addEventListener("touchmove", (e) => {
+  if (!isDraggingMusic) return;
+  const x = e.touches[0].clientX;
+  const deltaX = startX - x;
+  carrosselMusicas.scrollLeft = scrollLeft + deltaX;
+});
+
+carrosselMusicas.addEventListener("touchend", () => {
+  isDraggingMusic = false;
 });
