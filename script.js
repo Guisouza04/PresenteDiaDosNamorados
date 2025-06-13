@@ -309,43 +309,130 @@ document.body.addEventListener(
 );
 
 // O código a baixo, se retrata da sessão de Cartas
+// document.addEventListener("DOMContentLoaded", function () {
+//   const btnCartaDiaDosNamorados25 = document.getElementById(
+//     "carta-dia-dos-namorados-12-06-2025"
+//   );
+//   const btnFecharcartaDiaDosNamorados25 = document.getElementById(
+//     "btnFecharcartaDiaDosNamorados25"
+//   );
+//   const cartaDiaDosNamorados25 = document.getElementById(
+//     "cartaDiaDosNamorados25"
+//   );
+
+//   if (
+//     !btnCartaDiaDosNamorados25 ||
+//     !btnFecharcartaDiaDosNamorados25 ||
+//     !cartaDiaDosNamorados25
+//   ) {
+//     console.error("One or more elements not found. Check IDs in HTML.");
+//     return;
+//   }
+
+//   btnFecharcartaDiaDosNamorados25.addEventListener("click", function () {
+//     console.log("Botão fechar foi clicado!");
+//     btnFecharcartaDiaDosNamorados25.classList.add("hide");
+//     cartaDiaDosNamorados25.classList.add("hide");
+
+//     setTimeout(() => {
+//       btnFecharcartaDiaDosNamorados25.style.display = "none";
+//       cartaDiaDosNamorados25.style.display = "none";
+//       btnFecharcartaDiaDosNamorados25.classList.remove("hide");
+//       cartaDiaDosNamorados25.classList.remove("hide");
+//     }, 300); // Match animation duration (0.3s)
+//   });
+
+//   btnCartaDiaDosNamorados25.addEventListener("click", function () {
+//     console.log("Botão carta foi clicado!");
+//     btnFecharcartaDiaDosNamorados25.style.display = "flex";
+//     cartaDiaDosNamorados25.style.display = "flex";
+//   });
+// });
+
+// O código abaixo trata da sessão de Cartas
+const cartasData = [
+  {
+    titulo: "Carta Dia Dos Namorados - 12/06/2025",
+    imagem: "./assets/Cartas/Carta-DiaDosNamorados-12-06-2025.svg",
+    assinatura: "Guilherme",
+  },
+  {
+    titulo: "Carta de Aniversário - 20/07/2025",
+    imagem: "./assets/Cartas/Carta-DiaDosNamorados-12-06-2025-Yasmin.svg",
+    assinatura: "Yasmin",
+  },
+  // Adicione mais aqui quando quiser
+];
+
 document.addEventListener("DOMContentLoaded", function () {
-  const btnCartaDiaDosNamorados25 = document.getElementById(
-    "carta-dia-dos-namorados-12-06-2025"
-  );
-  const btnFecharcartaDiaDosNamorados25 = document.getElementById(
-    "btnFecharcartaDiaDosNamorados25"
-  );
-  const cartaDiaDosNamorados25 = document.getElementById(
-    "cartaDiaDosNamorados25"
-  );
+  const listaCartas = document.getElementById("lista-cartas");
 
-  if (
-    !btnCartaDiaDosNamorados25 ||
-    !btnFecharcartaDiaDosNamorados25 ||
-    !cartaDiaDosNamorados25
-  ) {
-    console.error("One or more elements not found. Check IDs in HTML.");
-    return;
-  }
+  const cartasData = [
+    {
+      titulo: "Carta Dia Dos Namorados - 12/06/2025",
+      imagem: "./assets/Cartas/Carta-DiaDosNamorados-12-06-2025.svg",
+      assinatura: "Guilherme",
+    },
+    {
+      titulo: "Carta de Aniversário - 20/07/2025",
+      imagem: "./assets/Cartas/Carta-DiaDosNamorados-12-06-2025-Yasmin.svg",
+      assinatura: "Yasmin",
+    },
+  ];
 
-  btnFecharcartaDiaDosNamorados25.addEventListener("click", function () {
-    console.log("Botão fechar foi clicado!");
-    btnFecharcartaDiaDosNamorados25.classList.add("hide");
-    cartaDiaDosNamorados25.classList.add("hide");
+  cartasData.forEach((carta, index) => {
+    const li = document.createElement("li");
+    li.classList.add("li-cartas");
 
-    setTimeout(() => {
-      btnFecharcartaDiaDosNamorados25.style.display = "none";
-      cartaDiaDosNamorados25.style.display = "none";
-      btnFecharcartaDiaDosNamorados25.classList.remove("hide");
-      cartaDiaDosNamorados25.classList.remove("hide");
-    }, 300); // Match animation duration (0.3s)
+    li.innerHTML = `
+      <div class="li-btn-cartas">
+        <div class="li-cartas-info">
+          <p>${carta.titulo}</p>
+          <img class="Icons-cartas" src="./assets/Icons/love-letter.png" alt="ícone de carta">
+        </div>
+
+        <button class="btn-fechar" style="display: none">
+          <img src="./assets/Icons/btn-fechar.svg" alt="Fechar Carta">
+        </button>
+
+        <div class="li-carta" style="display: none">
+          <img class="carta-img" src="${carta.imagem}" alt="${carta.titulo}">
+          <p>Ass: ${carta.assinatura}</p>
+        </div>
+      </div>
+    `;
+
+    listaCartas.appendChild(li);
   });
 
-  btnCartaDiaDosNamorados25.addEventListener("click", function () {
-    console.log("Botão carta foi clicado!");
-    btnFecharcartaDiaDosNamorados25.style.display = "flex";
-    cartaDiaDosNamorados25.style.display = "flex";
+  // Depois de gerar, aplicar funcionalidade
+  const cartas = document.querySelectorAll(".li-cartas");
+
+  cartas.forEach((carta) => {
+    const wrapper = carta.querySelector(".li-btn-cartas");
+    const btnFechar = carta.querySelector(".btn-fechar");
+    const cartaConteudo = carta.querySelector(".li-carta");
+
+    if (!wrapper || !btnFechar || !cartaConteudo) return;
+
+    wrapper.addEventListener("click", function (event) {
+      if (event.target.closest(".btn-fechar")) return;
+
+      btnFechar.style.display = "flex";
+      cartaConteudo.style.display = "flex";
+    });
+
+    btnFechar.addEventListener("click", function () {
+      btnFechar.classList.add("hide");
+      cartaConteudo.classList.add("hide");
+
+      setTimeout(() => {
+        btnFechar.style.display = "none";
+        cartaConteudo.style.display = "none";
+        btnFechar.classList.remove("hide");
+        cartaConteudo.classList.remove("hide");
+      }, 300);
+    });
   });
 });
 
