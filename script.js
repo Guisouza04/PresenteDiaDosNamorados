@@ -357,7 +357,7 @@ const cartasData = [
     assinatura: "Guilherme",
   },
   {
-    titulo: "Carta de Aniversário - 20/07/2025",
+    titulo: "Carta Dia Dos Namorados - 12/06/2025",
     imagem: "./assets/Cartas/Carta-DiaDosNamorados-12-06-2025-Yasmin.svg",
     assinatura: "Yasmin",
   },
@@ -374,7 +374,7 @@ document.addEventListener("DOMContentLoaded", function () {
       assinatura: "Guilherme",
     },
     {
-      titulo: "Carta de Aniversário - 20/07/2025",
+      titulo: "Carta Dia Dos Namorados - 12/06/2025",
       imagem: "./assets/Cartas/Carta-DiaDosNamorados-12-06-2025-Yasmin.svg",
       assinatura: "Yasmin",
     },
